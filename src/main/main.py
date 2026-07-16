@@ -80,39 +80,28 @@ def load_and_clean_users(file_path):
 
 # This function will load the callLogs.csv file into the callLogs table, discarding any records with incomplete data
 def load_and_clean_call_logs(file_path):
-    with open(file_path, "r") as call:
+    with open(file_path, "r") as call_logs:
         next(call) # skip header row
-        values = get_values(call, 5)
-        cursor.execute("INSERT INTO callLogs (phoneNumber, startTime, endTime, direction, userId) VALUES (?,?,?,?,?)", values)
+        for call in call_logs:
+            values = get_values(call, 5)
+            if value is None:
+                continue
+            cursor.execute("INSERT INTO callLogs (phoneNumber, startTime, endTime, direction, userId) VALUES (?,?,?,?,?)", values)
         conn.commit()
     print("TODO: load_call_logs")
 
-def get_next_value(row):
-    # takes CSV row
-    # returns:
-        # test - test if empty
-        # value - next value in csv row
-        # new_row - row with value removed
-    row = row.strip()
-    value = row[:row.indext(",")]
-
-    test = True
-    if value == "":
-        test = False
-
-    new_row = row[len(value) + 1]
-    retrun [test, value, new_row]   
-
 def get_values(row, num_of_values):
-    # takes CSV Row and number of expected values
-    # returns list of vlaues
-    values = []
-    for i in range(num_of_values):
-        test, value, row = get_next_value(row)
-        if not test:
-            continue
-        values.apped(value)     
-    return [values]
+    values = row.strip().split(",")
+
+    if len(values) != num_of_values:
+        return None
+
+    for index in range(len(values)): 
+        values[index] = values[index].strip()
+        if value[index] == "":
+            return None
+
+    return values
 
 # - Save analytic data for users into a csv file. The file must be named userAnalytics.csv, and it must be in the /resources folder
 # - Records must include userId, avgDuration, numCalls. Example:
