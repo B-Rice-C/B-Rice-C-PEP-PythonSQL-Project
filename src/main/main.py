@@ -56,27 +56,27 @@ def load_and_clean_users(file_path):
         
         for user in user_data:
             values = get_values(user, 2)
+
             if values is None:
                 continue
+
             cursor.execute("INSERT INTO users (firstName, lastName) VALUES (?,?)", values)
         conn.commit()
 
     print("TODO: load_users")
 
-
-# - Load the callLogs.csv file found in /resources into the callLogs table 
-# - Clean the data before insertion. In this project, you just have to leave out any records with missing values or too many values.
-# - HINT: For every record in callLogs.csv, make sure it has the correct number of fields and no empty values before inserting into the Database.
-
 # This function will load the callLogs.csv file into the callLogs table, discarding any records with incomplete data
 def load_and_clean_call_logs(file_path):
+
     with open(file_path, "r") as call_logs:
         next(call_logs)
-        
+
         for call in call_logs:
             values = get_values(call, 5)
+
             if values is None:
                 continue
+
             cursor.execute("INSERT INTO callLogs (phoneNumber, startTime, endTime, direction, userId) VALUES (?,?,?,?,?)", values)
         conn.commit()
     print("TODO: load_call_logs")
@@ -108,6 +108,25 @@ def get_values(row, num_of_values):
 # You must save records consisting of each userId, avgDuration, and numCalls
 # example: 1,105.0,4 - where 1 is the userId, 105.0 is the avgDuration, and 4 is the numCalls.
 def write_user_analytics(csv_file_path):
+    total_duration = {}
+    call_count = {}
+
+    cursor.execute("SELECT userId, startTime, endTime FROM callLogs")
+
+    call_logs = cursor.fetchall()
+
+    for call in call_logs:
+        user_id = call[0]
+        duration = call[2] - call[1] 
+
+        if user_id not in call_count:
+            total_duration[user_id] = 0
+            call_count[user_id] = 0
+
+        call_count[user_id] += 1
+        total_duration[user_id] += duration
+
+        
 
     print("TODO: write_user_analytics")
 
