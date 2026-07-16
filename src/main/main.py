@@ -52,7 +52,7 @@ def load_and_clean_users(file_path):
 
     # load file
     with open(file_path, "r") as user_data:
-
+        next(user_data)
         # remove rows with to many or not enough colums
         for line in user_data:
             if line.count(",") != 1 or line[0] == "," or line[-1] == ",":
@@ -60,6 +60,7 @@ def load_and_clean_users(file_path):
             seperator = line.index(",")
             first_name = line[:seperator]
             last_name = line[seperator + 1:]
+            print("added ", first_name, last_name)
 
             # load data into database
             cursor.execute("INSERT INTO users (firstName, lastName) VALUES (?,?)", (first_name, last_name))
