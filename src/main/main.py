@@ -81,7 +81,7 @@ def load_and_clean_users(file_path):
 # This function will load the callLogs.csv file into the callLogs table, discarding any records with incomplete data
 def load_and_clean_call_logs(file_path):
     with open(file_path, "r") as call_logs:
-        next(call) # skip header row
+        next(call_logs) # skip header row
         for call in call_logs:
             values = get_values(call, 5)
             if value is None:
