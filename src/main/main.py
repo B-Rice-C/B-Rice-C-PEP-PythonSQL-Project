@@ -54,24 +54,17 @@ def load_and_clean_users(file_path):
     with open(file_path, "r") as user_data:
         next(user_data) # skip header row
         
-        for line in user_data:
-            line = line.strip() # remove extra passed in from csv like \n
-            
-            # check to make sure there is a first name and a last name
-            if line.count(",") != 1 or line[0] == "," or line[-1] == ",":
+        with open(file_path, "r") as call_logs:
+        next(call_logs)
+        
+        for user in user_data:
+            values = get_values(user, 2)
+            if values is None:
                 continue
-
-            seperator = line.index(",")
-            first_name = line[:seperator]
-            last_name = line[seperator + 1:]
-
-            # print("added ", first_name, last_name) used for testing
-
-            # load data into database
             cursor.execute("INSERT INTO users (firstName, lastName) VALUES (?,?)", (first_name, last_name))
-            conn.commit()
+        conn.commit()
 
-    #print("TODO: load_users") Dont Need anymore
+    print("TODO: load_users") Dont Need anymore
 
 
 # - Load the callLogs.csv file found in /resources into the callLogs table 
@@ -81,7 +74,8 @@ def load_and_clean_users(file_path):
 # This function will load the callLogs.csv file into the callLogs table, discarding any records with incomplete data
 def load_and_clean_call_logs(file_path):
     with open(file_path, "r") as call_logs:
-        next(call_logs) # skip header row
+        next(call_logs)
+        
         for call in call_logs:
             values = get_values(call, 5)
             if values is None:
@@ -91,6 +85,7 @@ def load_and_clean_call_logs(file_path):
     print("TODO: load_call_logs")
 
 def get_values(row, num_of_values):
+    # pulls data from a row and returns None if not validated or a list if validated
     values = row.strip().split(",")
 
     if len(values) != num_of_values:
