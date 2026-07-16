@@ -134,7 +134,7 @@ def write_ordered_calls(csv_file_path):
         csv.write("userId,startTime\n")
 
         for line in order_log:
-            csv.write(str(line))
+            csv.write(str(line) + "\n")
 
     print("TODO: write_ordered_calls")
 
