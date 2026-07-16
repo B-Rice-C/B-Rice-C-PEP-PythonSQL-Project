@@ -139,6 +139,7 @@ def write_ordered_calls(csv_file_path):
 
                 if col < len(row) - 1:
                     csv.write(",") 
+                    
             csv.write("\n")    
 
     print("TODO: write_ordered_calls")
