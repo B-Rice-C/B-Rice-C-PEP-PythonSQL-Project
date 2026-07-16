@@ -61,7 +61,7 @@ def load_and_clean_users(file_path):
             cursor.execute("INSERT INTO users (firstName, lastName) VALUES (?,?)", (first_name, last_name))
         conn.commit()
 
-    print("TODO: load_users") Dont Need anymore
+    print("TODO: load_users")
 
 
 # - Load the callLogs.csv file found in /resources into the callLogs table 
