@@ -126,8 +126,11 @@ def write_user_analytics(csv_file_path):
         call_count[user_id] += 1
         total_duration[user_id] += duration
 
-        
-
+    with open (csv_file_path, "w") as file_analytics
+       file_analytics.write("userId,avgDuration,numCalls")
+       for user_id in total_duration:
+            average = duration[user_id] / call_count[user_id]            
+            file_analytics.write(user_id,average_duration,call_counts[user_id])
     print("TODO: write_user_analytics")
 
 
