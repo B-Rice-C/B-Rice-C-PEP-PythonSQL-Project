@@ -86,7 +86,7 @@ def load_and_clean_call_logs(file_path):
         if not call_test:
             continue
         cursor.execute("INSERT INTO callLogs (phoneNumber, startTime, endTime, direction, userId) VALUES (?,?,?,?,?)", values)
-        conn.commit
+        conn.commit()
     print("TODO: load_call_logs")
 
 def get_next_value(row):
@@ -105,7 +105,7 @@ def get_next_value(row):
     new_row = row[len(value) + 1]
     retrun [test, value, new_row]   
 
-def get_values(row, num_of_values)
+def get_values(row, num_of_values):
     # takes CSV Row and number of expected values
     # returns list of test and list of vlaues
     values = []
