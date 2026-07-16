@@ -51,19 +51,19 @@ def main():
 def load_and_clean_users(file_path):
 
     # load file
-    with open(file_path, "r") as user_data:
-    
-    # remove rows with to many or not enough colums
-    for line in user_data:
-        if line.count(,) not 1 or line[0] == "," or line[-1] == ",":
-            continue
-        seperator = line.index(",")
-        first_name = line[:seperator - 1]
-        last_name = line[seperator + 1:]
+    # with open(file_path, "r") as user_data:
 
-        # load data into database
-        cursor.execute("INSERT INTO users (firstName, lastName) VAULES (?,?)", (first_name, last_name))
-        conn.commit()
+    # # remove rows with to many or not enough colums
+    # for line in user_data:
+    #     if line.count(,) not 1 or line[0] == "," or line[-1] == ",":
+    #         continue
+    #     seperator = line.index(",")
+    #     first_name = line[:seperator - 1]
+    #     last_name = line[seperator + 1:]
+
+    #     # load data into database
+    #     cursor.execute("INSERT INTO users (firstName, lastName) VAULES (?,?)", (first_name, last_name))
+    #     conn.commit()
 
     print("TODO: load_users")
 
