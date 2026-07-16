@@ -84,7 +84,7 @@ def load_and_clean_call_logs(file_path):
         next(call_logs) # skip header row
         for call in call_logs:
             values = get_values(call, 5)
-            if value is None:
+            if values is None:
                 continue
             cursor.execute("INSERT INTO callLogs (phoneNumber, startTime, endTime, direction, userId) VALUES (?,?,?,?,?)", values)
         conn.commit()
@@ -98,7 +98,7 @@ def get_values(row, num_of_values):
 
     for index in range(len(values)): 
         values[index] = values[index].strip()
-        if value[index] == "":
+        if values[index] == "":
             return None
 
     return values
