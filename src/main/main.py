@@ -81,10 +81,8 @@ def load_and_clean_users(file_path):
 # This function will load the callLogs.csv file into the callLogs table, discarding any records with incomplete data
 def load_and_clean_call_logs(file_path):
     with open(file_path, "r") as call:
-        next(user_data) # skip header row
-        call_test, values = get_values(call, 5)
-        if not call_test:
-            continue
+        next(call) # skip header row
+        values = get_values(call, 5)
         cursor.execute("INSERT INTO callLogs (phoneNumber, startTime, endTime, direction, userId) VALUES (?,?,?,?,?)", values)
         conn.commit()
     print("TODO: load_call_logs")
@@ -107,14 +105,14 @@ def get_next_value(row):
 
 def get_values(row, num_of_values):
     # takes CSV Row and number of expected values
-    # returns list of test and list of vlaues
+    # returns list of vlaues
     values = []
-    tests = []
-    for i in range(number_of_values):
+    for i in range(num_of_values):
         test, value, row = get_next_value(row)
-        tests.append(test)
+        if not test:
+            continue
         values.apped(value)     
-    return [tests, values]
+    return [values]
 
 # - Save analytic data for users into a csv file. The file must be named userAnalytics.csv, and it must be in the /resources folder
 # - Records must include userId, avgDuration, numCalls. Example:
