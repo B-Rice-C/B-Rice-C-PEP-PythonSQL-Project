@@ -7,7 +7,6 @@ There are two halves in a full-stack application: the front end, responsible for
 The primary technologies you will leverage in this project are Python, SQL, and File I/O with .csv files. The project will be written in Python. Data will be loaded into an in-memory SQLite database from existing .csv files, and analytic data will be saved into new .csv files. 
 
 ## Database Tables 
-
 The following tables will be initialized in your project's built-in database upon startup.
 
 ### users
