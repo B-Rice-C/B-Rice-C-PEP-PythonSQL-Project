@@ -55,6 +55,7 @@ def load_and_clean_users(file_path):
         next(user_data)
         # remove rows with to many or not enough colums
         for line in user_data:
+            line = line.strip()
             if line.count(",") != 1 or line[0] == "," or line[-1] == ",":
                 continue
             seperator = line.index(",")
