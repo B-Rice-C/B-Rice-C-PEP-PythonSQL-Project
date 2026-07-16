@@ -54,9 +54,6 @@ def load_and_clean_users(file_path):
     with open(file_path, "r") as user_data:
         next(user_data) # skip header row
         
-        with open(file_path, "r") as call_logs:
-        next(call_logs)
-        
         for user in user_data:
             values = get_values(user, 2)
             if values is None:
