@@ -31,9 +31,9 @@ def main():
 
     # You will implement these methods below. They just print TO-DO messages for now.
     load_and_clean_users('../../resources/users.csv')
-    load_and_clean_call_logs('../../resources/callLogs.csv')
-    write_user_analytics('../../resources/userAnalytics.csv')
-    write_ordered_calls('../../resources/orderedCalls.csv')
+    # load_and_clean_call_logs('../../resources/callLogs.csv')
+    # write_user_analytics('../../resources/userAnalytics.csv')
+    # write_ordered_calls('../../resources/orderedCalls.csv')
 
     # Helper method that prints the contents of the users and callLogs tables. Uncomment to see data.
     # select_from_users_and_call_logs()
