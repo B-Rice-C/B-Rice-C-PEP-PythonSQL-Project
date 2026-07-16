@@ -62,7 +62,7 @@ def load_and_clean_users(file_path):
         last_name = line[seperator + 1:]
 
         # load data into database
-        cursor.execute("INSERT INTO users (firstName, lastName) VAULES (?,?,?)", (first_name, last_name))
+        cursor.execute("INSERT INTO users (firstName, lastName) VAULES (?,?)", (first_name, last_name))
         conn.commit()
 
     print("TODO: load_users")
