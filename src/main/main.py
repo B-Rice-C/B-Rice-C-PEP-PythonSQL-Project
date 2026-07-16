@@ -86,7 +86,7 @@ def load_and_clean_call_logs(file_path):
         if not call_test:
             continue
         cursor.execute("INSERT INTO callLogs (phoneNumber, startTime, endTime, direction, userId) VALUES (?,?,?,?,?)", values)
-
+        conn.commit
     print("TODO: load_call_logs")
 
 def get_next_value(row):
