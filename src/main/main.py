@@ -52,22 +52,26 @@ def load_and_clean_users(file_path):
 
     # load file
     with open(file_path, "r") as user_data:
-        next(user_data)
-        # remove rows with to many or not enough colums
+        next(user_data) # skip header row
+        
         for line in user_data:
-            line = line.strip()
+            line = line.strip() # remove extra passed in from csv like \n
+            
+            # check to make sure there is a first name and a last name
             if line.count(",") != 1 or line[0] == "," or line[-1] == ",":
                 continue
+
             seperator = line.index(",")
             first_name = line[:seperator]
             last_name = line[seperator + 1:]
-            print("added ", first_name, last_name)
+
+            # print("added ", first_name, last_name) used for testing
 
             # load data into database
             cursor.execute("INSERT INTO users (firstName, lastName) VALUES (?,?)", (first_name, last_name))
             conn.commit()
 
-    print("TODO: load_users")
+    #print("TODO: load_users") Dont Need anymore
 
 
 # - Load the callLogs.csv file found in /resources into the callLogs table 
