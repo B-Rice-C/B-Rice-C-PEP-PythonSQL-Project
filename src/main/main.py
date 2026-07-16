@@ -18,7 +18,7 @@ def main():
                       )'''
                    )
 
-    # callLogs table (with FK to users table)
+    # callLogs table (with FK to users table) 
     cursor.execute('''CREATE TABLE IF NOT EXISTS callLogs (
         callId INTEGER PRIMARY KEY,
         phoneNumber TEXT,
@@ -139,7 +139,7 @@ def write_ordered_calls(csv_file_path):
 
                 if col < len(row) - 1:
                     csv.write(",") 
-                    
+
             csv.write("\n")    
 
     print("TODO: write_ordered_calls")
