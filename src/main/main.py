@@ -58,7 +58,7 @@ def load_and_clean_users(file_path):
             values = get_values(user, 2)
             if values is None:
                 continue
-            cursor.execute("INSERT INTO users (firstName, lastName) VALUES (?,?)", (first_name, last_name))
+            cursor.execute("INSERT INTO users (firstName, lastName) VALUES (?,?)", values)
         conn.commit()
 
     print("TODO: load_users")
