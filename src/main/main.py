@@ -95,15 +95,6 @@ def get_values(row, num_of_values):
 
     return values
 
-# - Save analytic data for users into a csv file. The file must be named userAnalytics.csv, and it must be in the /resources folder
-# - Records must include userId, avgDuration, numCalls. Example:
-#   ```
-#   userId,avgDuration,numCalls
-#   1,105.0,4
-#   ```
-# - HINT: This data will be selected from the callLogs table.
-# - HINT 2: Dictionaries will be very helpful for matching data with userIds. Consider one for {userId, average call duration} and one for {userId, number of calls}. 
-
 # This function will write analytics data to testUserAnalytics.csv - average call time, and number of calls per user.
 # You must save records consisting of each userId, avgDuration, and numCalls
 # example: 1,105.0,4 - where 1 is the userId, 105.0 is the avgDuration, and 4 is the numCalls.
@@ -133,17 +124,17 @@ def write_user_analytics(csv_file_path):
             file_analytics.write( str(user_id) + "," + str(average) + "," + str(call_count[user_id]) + "\n"  )
     print("TODO: write_user_analytics")
 
-
-
-# - Save call logs into csv files, ordered by userId, then start time. The file must be named orderedCallLogs.csv
-# - HINT: This data will be selected from the callLogs table.
-# - HINT 2: You can make use of ORDER BY to greatly simplify your python logic
-
-# *General note - each of these functions take a "file_path" parameter. You will not need to edit this variable, but it will be used to accomplish each implementation. See main() for an example of the function invocations with file paths from /resources.
-
 # This function will write the callLogs ordered by userId, then start time.
 # Then, write the ordered callLogs to orderedCalls.csv
 def write_ordered_calls(csv_file_path):
+    # get data from callLogs table
+    cursor.execute("SELECT userId, startTime FROM callLogs ORDER BY userID, startTime")
+    order_log = cursor.fetchall()
+
+    with open(csv_file_path, "w") as csv:
+        csv.write("userId,startTime\n")
+        for line in order_log:
+            csv.write(str(line) + "\n")
 
     print("TODO: write_ordered_calls")
 
